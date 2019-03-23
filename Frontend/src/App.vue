@@ -1,12 +1,26 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">{{ $t('home') }}</router-link> |
+      <router-link to="/about">{{ $t('about') }}</router-link>
+      <select v-model="$i18n.locale">
+        <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang.toUpperCase() }}</option>
+      </select>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'App',
+  data () {
+    return {
+      langs: ['en', 'fr']
+    }
+  }
+}
+</script>
 
 <style>
 #app {
