@@ -1,11 +1,28 @@
 <template>
   <div v-if="profile !== null">
-    <h3>{{ profile.firstname + ' ' + profile.lastname }}</h3>
-    <p>{{ profile.homeaddress }}</p>
-    <h4>{{ $t('skills') }}</h4>
-    <ul>
-      <li v-for="(skill, index) in skills" :key="'skill-' + index">{{ skill }}</li>
-    </ul>
+    <table>
+      <tr>
+        <th>{{ $t('firstName') }}</th>
+        <td><input v-model="profile.firstname"></td>
+      </tr>
+      <tr>
+        <th>{{ $t('lastName') }}</th>
+        <td><input v-model="profile.lastname"></td>
+      </tr>
+      <tr>
+        <th>{{ $t('homeAddress') }}</th>
+        <td><input v-model="profile.homeaddress"></td>
+      </tr>
+      <tr>
+        <th>{{ $t('skills') }}</th>
+        <td>
+          <div v-for="(skill, index) in profile.skills" :key="'skill-' + index">
+            {{ skill }} <button @click="deleteSkill">X</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <button @click="saveProfile">{{ $t('saveProfile') }}</button>
   </div>
 </template>
 
@@ -17,9 +34,16 @@ export default {
   computed: {
     ...mapState([
       'profile'
-    ]),
-    skills () {
-      return this.profile !== null && this.profile.skills !== undefined ? this.profile.skills.split(',') : []
+    ])
+  },
+  methods: {
+    saveProfile () {
+      this.$store.dispatch('updateProfile', {
+        profile: this.profile
+      })
+    },
+    deleteSkill (skill) {
+      this.profile.skills.pop(skill)
     }
   },
   created () {

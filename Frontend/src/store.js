@@ -24,6 +24,7 @@ export default new Vuex.Store({
       state.profileId = ''
     },
     setProfile (state, profile) {
+      profile.skills = profile.skills.split(',')
       state.profile = profile
     }
   },
@@ -39,6 +40,12 @@ export default new Vuex.Store({
     async getProfile (context) {
       const response = await api.get('/users/' + context.state.profileId)
       context.commit('setProfile', response.data)
+      return response
+    },
+    async updateProfile (context, { profile }) {
+      profile.skills = profile.skills.join(',')
+      const response = await api.put('/users/' + context.state.profileId)
+      context.commit('setProfile', profile)
       return response
     }
   }

@@ -8,5 +8,9 @@
   "usernameRequired": "Username is required",
   "passwordRequired": "Password is required",
   "profile": "Profile",
-  "skills": "Skills"
+  "skills": "Skills",
+  "firstName": "First name",
+  "lastName": "Last name",
+  "homeAddress": "Home address",
+  "saveProfile": "Save"
 }
