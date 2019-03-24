@@ -35,6 +35,7 @@ const getUserById = (request, response) => {
 
             });
         } else {
+            delete results.rows[0].password;
             response.status(200).json(results.rows[0])
         }
     })
@@ -108,11 +109,21 @@ const login = (request, response) => {
     })
 };
 
+const getAllJobs = (request, response) => {
+    pool.query('SELECT * FROM jobs ORDER BY id ASC', (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+};
+
 module.exports = {
     getUsers,
     getUserById,
     createUser,
     updateUser,
     deleteUser,
-    login
+    login,
+    getAllJobs
 };

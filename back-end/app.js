@@ -25,7 +25,8 @@ app.post('/users', db.createUser)
 app.put('/users/:id', db.updateUser)
 app.delete('/users/:id', db.deleteUser)
 app.post('/login', db.login)
+app.get('/jobs', db.getAllJobs)
 
 app.listen(3000, function () {
-    console.log('Example app listening on port 3000!')
+    console.log('API Started on port 3000!')
 });
