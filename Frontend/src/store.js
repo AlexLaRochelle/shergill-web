@@ -10,11 +10,21 @@ var api = axios.create({
 
 export default new Vuex.Store({
   state: {
-    isLoggedIn: false
+    isLoggedIn: false,
+    profileId: '',
+    profile: null
   },
   mutations: {
-    login (state, isLoggedIn) {
-      state.isLoggedIn = isLoggedIn
+    login (state, data) {
+      state.isLoggedIn = data.isValid
+      state.profileId = data.id
+    },
+    logout (state) {
+      state.isLoggedIn = false
+      state.profileId = ''
+    },
+    setProfile (state, profile) {
+      state.profile = profile
     }
   },
   actions: {
@@ -24,6 +34,11 @@ export default new Vuex.Store({
         password: password
       })
       context.commit('login', response.data)
+      return response
+    },
+    async getProfile (context) {
+      const response = await api.get('/users/' + context.state.profileId)
+      context.commit('setProfile', response.data)
       return response
     }
   }

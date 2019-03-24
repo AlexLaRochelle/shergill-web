@@ -23,12 +23,15 @@ export default {
     }
   },
   methods: {
-    login () {
+    async login () {
       if (this.validateAll(this.username, this.password)) {
-        this.$store.dispatch('login', {
+        const response = await this.$store.dispatch('login', {
           username: this.username,
           password: this.password
         })
+        if (response.data.isValid) {
+          this.$router.push('/')
+        }
       }
     },
     validateAll (user, pass) {

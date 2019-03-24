@@ -3,7 +3,13 @@
     <div id="nav">
       <router-link to="/">{{ $t('home') }}</router-link> |
       <router-link to="/about">{{ $t('about') }}</router-link> |
-      <router-link to="/login">{{ $t('login') }}</router-link> |
+      <span v-if="!isLoggedIn">
+        <router-link to="/login">{{ $t('login') }}</router-link> |
+      </span>
+      <span v-else>
+        <router-link to="/profile">{{ $t('profile') }}</router-link> |
+        <button @click="logout">{{ $t('logout') }}</button> |
+      </span>
       <select v-model="$i18n.locale">
         <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang.toUpperCase() }}</option>
       </select>
@@ -13,11 +19,23 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'App',
   data () {
     return {
       langs: ['en', 'fr']
+    }
+  },
+  computed: {
+    ...mapState([
+      'isLoggedIn'
+    ])
+  },
+  methods: {
+    logout () {
+      this.$store.commit('logout')
     }
   }
 }

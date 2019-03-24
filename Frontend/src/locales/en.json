@@ -2,8 +2,11 @@
   "home": "Home",
   "about": "About",
   "login": "Login",
+  "logout": "Logout",
   "username": "Username",
   "password": "Password",
   "usernameRequired": "Username is required",
-  "passwordRequired": "Password is required"
+  "passwordRequired": "Password is required",
+  "profile": "Profile",
+  "skills": "Skills"
 }
