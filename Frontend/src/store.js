@@ -12,7 +12,8 @@ export default new Vuex.Store({
   state: {
     isLoggedIn: false,
     profileId: '',
-    profile: null
+    profile: null,
+    jobs: []
   },
   mutations: {
     login (state, data) {
@@ -25,6 +26,9 @@ export default new Vuex.Store({
     },
     setProfile (state, profile) {
       state.profile = profile
+    },
+    setJobs (state, jobs) {
+      state.jobs = jobs
     }
   },
   actions: {
@@ -39,6 +43,11 @@ export default new Vuex.Store({
     async getProfile (context) {
       const response = await api.get('/users/' + context.state.profileId)
       context.commit('setProfile', response.data)
+      return response
+    },
+    async getJobs (context) {
+      const response = await api.get('/jobs')
+      context.commit('setJobs', response.data)
       return response
     }
   }

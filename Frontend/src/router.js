@@ -28,6 +28,11 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: () => import(/* webpackChunkName: "profile" */ './views/Profile.vue')
+    },
+    {
+      path: '/jobs',
+      name: 'jobs',
+      component: () => import(/* webpackChunkName: "profile" */ './views/Jobs.vue')
     }
   ]
 })
