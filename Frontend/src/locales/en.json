@@ -1,4 +1,9 @@
 {
   "home": "Home",
-  "about": "About"
+  "about": "About",
+  "login": "Login",
+  "username": "Username",
+  "password": "Password",
+  "usernameRequired": "Username is required",
+  "passwordRequired": "Password is required"
 }

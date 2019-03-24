@@ -2,7 +2,8 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">{{ $t('home') }}</router-link> |
-      <router-link to="/about">{{ $t('about') }}</router-link>
+      <router-link to="/about">{{ $t('about') }}</router-link> |
+      <router-link to="/login">{{ $t('login') }}</router-link> |
       <select v-model="$i18n.locale">
         <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang.toUpperCase() }}</option>
       </select>
