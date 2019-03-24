@@ -3,6 +3,9 @@
     <div id="nav">
       <router-link to="/">{{ $t('home') }}</router-link> |
       <router-link to="/about">{{ $t('about') }}</router-link> |
+      <span v-if="isLoggedIn">
+        <router-link to="/jobs">{{ $t('jobs') }}</router-link> |
+      </span>
       <span v-if="!isLoggedIn">
         <router-link to="/login">{{ $t('login') }}</router-link> |
       </span>
